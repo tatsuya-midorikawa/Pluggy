@@ -1,0 +1,6 @@
+@startuml
+
+[Outlet module] -right-> [Interface module]
+[Plugin module] -left-> [Interface module]
+
+@enduml
