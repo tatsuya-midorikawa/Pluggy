@@ -61,5 +61,4 @@ namespace Pluggy
         public async Task<T> ActivateAsync<T>(CancellationToken cancellationToken, TaskCreationOptions creationOptions, TaskScheduler scheduler, params object[] args)
             => await Task.Factory.StartNew(() => Activate<T>(args), cancellationToken, creationOptions, scheduler);
     }
-
 }
