@@ -75,26 +75,30 @@ namespace OutletProject
     {
       // plugin dllが存在するパスを指定
       var dir = "./";
+
       // plugin dllに接続
-      var outlet = await Outlet.ConnectAsync("./");
+      // Contract.IPluginを実装しているクラス・構造体の中でPluginAttributeが付与されているもののみ対象
+      var outlet = await Outlet<Contract.IPlugin>.ConnectAsync("./");
+
       // plugin dllからplugin機能を取得
       var plugins = await outlet.GetPluginsAsync();
 
       foreach (var plugin　in plugins)
       {
         // pluginを活性化して、機能を呼び出す
-        plugin.Activate<Contract.IPlugin>().Print();
+        var p = await plugin.ActivateAsync();
+        p.Print();
       }
     }
   }
 }
 ```
 
-pluginに引数を必要とするコンストラクタが存在する場合、**Activate&lt;T&gt;()** の引数にパラメータを渡すことも可能です。
+pluginに引数を必要とするコンストラクタが存在する場合、**ActivateAsync()** の引数にパラメータを渡すことも可能です。
 
 ```cs
 foreach (var plugin　in plugins)
 {
-  plugin.Activate<Contract.IPlugin>("parameter", 100).Print();
+  plugin.Activate("parameter", 100).Print();
 }
 ```
