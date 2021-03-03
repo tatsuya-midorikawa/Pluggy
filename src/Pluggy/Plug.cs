@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pluggy
 {
-    public sealed class Plug
+    public sealed class Plug<T>
     {
         private readonly Type type;
 
@@ -31,7 +31,7 @@ namespace Pluggy
             return true;
         }
 
-        public T Activate<T>(params object[] args)
+        public T Activate(params object[] args)
         {
             var t = typeof(T);
             if (!t.IsInterface)
@@ -49,16 +49,16 @@ namespace Pluggy
                 : (T)type.Constructor();
         }
 
-        public async Task<T> ActivateAsync<T>(params object[] args)
-            => await Task.Factory.StartNew(() => Activate<T>(args));
+        public async Task<T> ActivateAsync(params object[] args)
+            => await Task.Factory.StartNew(() => Activate(args));
 
-        public async Task<T> ActivateAsync<T>(CancellationToken cancellationToken, params object[] args)
-            => await Task.Factory.StartNew(() => Activate<T>(args), cancellationToken);
+        public async Task<T> ActivateAsync(CancellationToken cancellationToken, params object[] args)
+            => await Task.Factory.StartNew(() => Activate(args), cancellationToken);
 
-        public async Task<T> ActivateAsync<T>(TaskCreationOptions creationOptions, params object[] args)
-            => await Task.Factory.StartNew(() => Activate<T>(args), creationOptions);
+        public async Task<T> ActivateAsync(TaskCreationOptions creationOptions, params object[] args)
+            => await Task.Factory.StartNew(() => Activate(args), creationOptions);
 
-        public async Task<T> ActivateAsync<T>(CancellationToken cancellationToken, TaskCreationOptions creationOptions, TaskScheduler scheduler, params object[] args)
-            => await Task.Factory.StartNew(() => Activate<T>(args), cancellationToken, creationOptions, scheduler);
+        public async Task<T> ActivateAsync(CancellationToken cancellationToken, TaskCreationOptions creationOptions, TaskScheduler scheduler, params object[] args)
+            => await Task.Factory.StartNew(() => Activate(args), cancellationToken, creationOptions, scheduler);
     }
 }
