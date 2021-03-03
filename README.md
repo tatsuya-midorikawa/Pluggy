@@ -96,7 +96,7 @@ namespace OutletProject
 pluginに引数を必要とするコンストラクタが存在する場合、**ActivateAsync()** の引数にパラメータを渡すことも可能です。
 
 ```cs
-foreach (var plugin　in plugins)
+foreach (var plugin in plugins)
 {
   var p = await plugin.ActivateAsync("parameter", 100).Print();
 }
