@@ -22,7 +22,6 @@
 ```cs
 // [IPlugin.dll]
 // interface module
-
 namespace Contract
 {
   public interface IPlugin
@@ -54,7 +53,7 @@ public class SamplePlugin : Contract.IPlugin
 
 ## Outlet
 
-特定のフォルダにあるdllからPlugin機能を持つクラス・構造体を呼び出して利用します。
+特定のフォルダにあるdllからPlugin機能を持つクラス・構造体を呼び出して利用します。  
 OutletからInterfaceへの参照が必要ですが、Pluginへの参照追加は当然不要です。
 
 ```cs
