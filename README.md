@@ -1,3 +1,5 @@
+![icon](https://raw.githubusercontent.com/tatsuya-midorikawa/Pluggy/main/assets/plugin.png)
+
 # Pluggy
 
 **`Pluggy (ﾌﾟﾗｯｷﾞｰ)`** はプラグイン機能を簡単に実装するための基本機能を提供するライブラリです。
@@ -20,7 +22,6 @@
 これはOutletとPlugin間で交わされる契約となります。
 
 ```cs
-// [IPlugin.dll]
 // interface module
 namespace Contract
 {
@@ -37,7 +38,6 @@ Plugin側は機能を提供するクラス・構造体に `PluginAttribute` を�
 またOutlet側と共有するための `Interface module` を参照する必要があります。
 
 ```cs
-// [SamplePlugin.dll]
 // plugin module
 using Pluggy;
 
@@ -57,7 +57,6 @@ public class SamplePlugin : Contract.IPlugin
 OutletからInterfaceへの参照が必要ですが、Pluginへの参照追加は当然不要です。
 
 ```cs
-// [Outlet.exe]
 // Outlet module
 using System;
 using System.IO;
@@ -83,7 +82,7 @@ namespace OutletProject
       // plugin dllからplugin機能を取得
       var plugins = await outlet.GetPluginsAsync();
 
-      foreach (var plugin　in plugins)
+      foreach (var plugin in plugins)
       {
         // pluginを活性化して、機能を呼び出す
         var p = await plugin.ActivateAsync();
@@ -99,6 +98,6 @@ pluginに引数を必要とするコンストラクタが存在する場合、**
 ```cs
 foreach (var plugin　in plugins)
 {
-  plugin.Activate("parameter", 100).Print();
+  var p = await plugin.ActivateAsync("parameter", 100).Print();
 }
 ```
