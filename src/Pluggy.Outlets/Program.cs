@@ -8,11 +8,22 @@ namespace Pluggy.Outlets
     {
         static async Task Main(string[] args)
         {
-            var outlet = await Outlet<IPlugin>.ConnectAsync("./");
-            var plugins = await outlet.GetPluginsAsync();
-            foreach (var (plugin, i) in plugins.Select((p, i) => (p, i)))
-            {
-                plugin.Activate(i.ToString()).Print();
+            {   // Outlet
+                var outlet = await Outlet<IPlugin>.ConnectAsync("./");
+                var plugins = await outlet.GetPluginsAsync();
+                foreach (var (plugin, i) in plugins.Select((p, i) => (p, i)))
+                {
+                    plugin.Activate(i.ToString()).Print();
+                }
+            }
+
+            {   // FlexibleOutlet
+                var outlet = await FlexibleOutlet.ConnectAsync("./");
+                var plugins = await outlet.GetPluginsAsync();
+                foreach (var (plugin, i) in plugins.Select((p, i) => (p, i)))
+                {
+                    plugin.Activate(i.ToString()).Print();
+                }
             }
         }
     }
