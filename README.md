@@ -98,6 +98,6 @@ pluginに引数を必要とするコンストラクタが存在する場合、**
 ```cs
 foreach (var plugin in plugins)
 {
-  var p = await plugin.ActivateAsync("parameter", 100).Print();
+  var p = await plugin.ActivateAsync("parameter", 100);
 }
 ```
