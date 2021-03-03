@@ -3,4 +3,6 @@
 [Outlet module] -right-> [Interface module]
 [Plugin module] -left-> [Interface module]
 
+[Outlet module] --> [Pluggy]
+[Plugin module] --> [Pluggy]
 @enduml

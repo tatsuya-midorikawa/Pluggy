@@ -65,7 +65,9 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace Outlet
+using Pluggy;
+
+namespace OutletProject
 {
   class Program
   {
