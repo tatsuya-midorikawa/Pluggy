@@ -1,8 +1,5 @@
 ﻿using Pluggy.Interfaces;
-using System;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Pluggy.Outlets
