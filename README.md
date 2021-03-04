@@ -25,10 +25,10 @@
 // interface module
 namespace Contract
 {
-  public interface IPlugin
-  {
-    void Print();
-  }
+    public interface IPlugin
+    {
+        void Print();
+    }
 }
 ```
 
@@ -44,10 +44,10 @@ using Pluggy;
 [Plugin]
 public class SamplePlugin : Contract.IPlugin
 {
-  public void Print()
-  {
-    System.Console.WriteLine(GetType().FullName);
-  }
+    public void Print()
+    {
+        System.Console.WriteLine(GetType().FullName);
+    }
 }
 ```
 
@@ -68,28 +68,28 @@ using Pluggy;
 
 namespace OutletProject
 {
-  class Program
-  {
-    static async Task Main(string[] args)
+    class Program
     {
-      // plugin dllが存在するパスを指定
-      var dir = "./";
+        static async Task Main(string[] args)
+        {
+            // plugin dllが存在するパスを指定
+            var dir = "./";
 
-      // plugin dllに接続
-      // Contract.IPluginを実装しているクラス・構造体の中でPluginAttributeが付与されているもののみ対象
-      var outlet = await Outlet<Contract.IPlugin>.ConnectAsync("./");
+            // plugin dllに接続
+            // Contract.IPluginを実装しているクラス・構造体の中でPluginAttributeが付与されているもののみ対象
+            var outlet = await Outlet<Contract.IPlugin>.ConnectAsync("./");
 
-      // plugin dllからplugin機能を取得
-      var plugins = await outlet.GetPluginsAsync();
+            // plugin dllからplugin機能を取得
+            var plugins = await outlet.GetPluginsAsync();
 
-      foreach (var plugin in plugins)
-      {
-        // pluginを活性化して、機能を呼び出す
-        var p = await plugin.ActivateAsync();
-        p.Print();
-      }
+            foreach (var plugin in plugins)
+            {
+                // pluginを活性化して、機能を呼び出す
+                var p = await plugin.ActivateAsync();
+                p.Print();
+            }
+        }
     }
-  }
 }
 ```
 
@@ -98,6 +98,6 @@ pluginに引数を必要とするコンストラクタが存在する場合、**
 ```cs
 foreach (var plugin in plugins)
 {
-  var p = await plugin.ActivateAsync("parameter", 100);
+    var p = await plugin.ActivateAsync("parameter", 100);
 }
 ```
